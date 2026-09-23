@@ -63,3 +63,9 @@ The inputs (hashes) are mathematical facts and are not subject to copyright. The
 2.  Enter it into a generative audio model (e.g., Suno, Udio, Google Flow).
 3.  Leave style prompts empty or minimal.
 4.  Observe the consistency of the output across multiple generations.
+
+## Negative Result
+- **Model:** Google Flow Music
+- **Input:** Identical JSON nonsense (3 runs)
+- **Result:** 3 distinct tracks
+- **Conclusion:** Determinism is model-specific, not universal.
