@@ -30,10 +30,9 @@ Um wissenschaftliche Strenge zu gewährleisten, verwendet dieses Projekt einen v
 ### 1. Der Suno-Determinismus-Test (v6-mini)
 *   **Modell:** Suno v6-mini (hier ist der Effekt am deutlichsten und reproduzierbarsten).
 *   **Eingabe:** Spezifische SHA-1-Hashes und phonetische Unsinn-Strings.
-*   **Bedingung:** Input zwingend im Feld **"Style of Music"**, Feld **"Lyrics" muss leer bleiben**.
 *   **Ergebnis:** **Hoher Determinismus.** Wiederholte Generierung mit exakt derselben Eingabe lieferte nahezu identische musikalische Ausgaben.
-    *   *Beispiel 1 (track7.md):* Der phonetische String `Spewssscowpspudless` erzeugt mit hoher Wahrscheinlichkeit ein **bayerisches Volkslied**.
-    *   *Beispiel 2 (track3.md & track4.md):* Ein spezifischer SHA-1-Hash generiert konsistent Tracks mit dem Titel **"The Great Wall"** und einem historischen/epischen Vibe.
+    *   *Beispiel 1 (track3.md & track4.md):* Ein spezifischer SHA-1-Hash generiert konsistent Tracks im **Chilled Out Jazz**-Bereich, wobei die KI Titel wie "The Great Gatsby" oder "The Great Wall" vergibt.
+    *   *Beispiel 2 (track7.md):* Der phonetische String `Spewssscowpspudless` erzeugt mit hoher Wahrscheinlichkeit ein **bayerisches Volkslied**.
 *   **Schlussfolgerung:** Für diese spezifischen Eingaben fungiert Suno v6-mini als **Abrufmaschine** innerhalb seines latenten Raums. Die Ausgabe ist eine funktionale Abbildung des Eingabevektors.
 
 ### 2. Die Flow-Music-Kontrollgruppe
@@ -44,15 +43,21 @@ Um wissenschaftliche Strenge zu gewährleisten, verwendet dieses Projekt einen v
 
 ## 🎛️ Nutzungsanweisungen (Reproduzierbarkeit)
 
-Um die dokumentierten Tracks exakt zu reproduzieren, ist die **korrekte Feldbelegung in Suno entscheidend**:
+Um die dokumentierten Tracks exakt zu reproduzieren, ist die **korrekte Eingabemethode in Suno entscheidend**:
 
+### Standardverfahren (Tracks 1-12, 14+)
 1. Öffne Suno und aktiviere den **"Custom Mode"**.
-2. Füge den Hash oder den Unsinn-String (z. B. aus `track7.md` oder `track3.md`) in das Feld **"Style of Music"** ein.
+2. Füge den Hash oder den Unsinn-String (z. B. aus `track3.md`, `track4.md` oder `track7.md`) in das Feld **"Style of Music"** ein.
 3. Lasse das Feld **"Lyrics" zwingend LEER**.
 4. Klicke auf **"Create"**.
 
-**Warum das wichtig ist:**  
-Suno verarbeitet diese Felder architektonisch unterschiedlich. Das "Style"-Feld wird als Vektor für Genre/Stimmung interpretiert und löst die deterministische Navigation im latenten Raum aus. Das "Lyrics"-Feld hingegen erzwingt semantische Verarbeitung und fügt stochastische Variation (Rauschen) hinzu, was den deterministischen Effekt zerstören würde.
+### Ausnahme: Track 13
+1. Öffne Suno und bleibe im **"Simple Mode"** (nicht Custom Mode).
+2. Füge den Prompt direkt in das einzige, große Haupt-Eingabefeld ein.
+3. Klicke auf **"Create"**.
+
+**Warum diese Unterscheidung wichtig ist:**  
+Suno verarbeitet diese Felder architektonisch unterschiedlich. Das "Style"-Feld wird als Vektor für Genre/Stimmung interpretiert und löst die deterministische Navigation im latenten Raum aus. Das "Lyrics"-Feld hingegen erzwingt semantische Verarbeitung und fügt stochastische Variation (Rauschen) hinzu, was den deterministischen Effekt zerstören würde. Der "Simple Mode" umgeht diese Trennung und folgt einem anderen Verarbeitungspfad.
 
 ## 💡 Wichtige Erkenntnisse
 
@@ -71,10 +76,10 @@ Vollständige Protokolle siehe im Verzeichnis `/tracks`.
 
 | Track | Eingabetyp | Beispiel-Eingabe | Beobachtete Stimmung | KI-Titel |
 | :--- | :--- | :--- | :--- | :--- |
-| **track3 / 4** | SHA-1-Hash | `d746452f...` | Historisch, Episch, Strukturiert | "The Great Wall" |
+| **track3 / 4** | SHA-1-Hash | `d746452f...` | Chilled Out Jazz, Elegant, 1920er Vibe | "The Great Wall" / "The Great Gatsby" |
 | **track7** | Phonetischer Unsinn | `Spewssscowpspudless` | Bayerisches Volkslied, Hell, Perkussiv | [Variiert] |
 | **trackX** | Phonetischer Unsinn | `Moulmmolfprulify` | Dark Ambient, Horror-Score, Drone | "Shadow Porch" |
-| **trackY** | JSON-Daten | `{"dsl_spacers":...}` | Glitch Hop, IDM, Digitaler Zerfall | [Variiert] |
+| **track13** | Simple Prompt | `[Siehe track13.md]` | Abhängig vom Simple-Mode-Verhalten | [Variiert] |
 
 ## ⚖️ Rechtliche und ethische Implikationen
 
@@ -85,8 +90,8 @@ Die Eingaben (Hashes/Strings) sind mathematische/phonetische Fakten und unterlie
 ## 🚀 So reproduzierst du es
 
 1. Wähle einen der dokumentierten Hashes oder Strings aus dem `/tracks`-Verzeichnis.
-2. Gib ihn in Suno (vorzugsweise v6-mini) im **Custom Mode** ein.
-3. Achte darauf: **Style-Feld = Input**, **Lyrics-Feld = leer**.
+2. Gib ihn in Suno (vorzugsweise v6-mini) ein.
+3. Achte auf die korrekte Methode: **Tracks 1-12, 14+** im Custom Mode (Style = Input, Lyrics = leer). **Track 13** im Simple Mode.
 4. Generiere den Track mehrmals und vergleiche die Ergebnisse.
 
 ## 📄 Lizenz
