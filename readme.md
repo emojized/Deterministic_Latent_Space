@@ -73,11 +73,26 @@ To ensure scientific rigor, this project employs a comparative approach across d
 *   **Result:** **High Determinism.** Repeated generation with the exact same input yielded nearly identical musical outputs in terms of genre, structure, instrumentation, and AI-generated titles.
 *   **Conclusion:** For these specific inputs, Suno functions as a **retrieval engine** within its latent space rather than a purely stochastic creator. The output is a functional mapping of the input vector.
 
-### 2. The Flow Music Control Group
-*   **Input:** Identical complex JSON data structures and nonsense prompts (3 consecutive runs).
-*   **Model:** Google Flow Music.
-*   **Result:** **High Stochasticity.** Each run produced a distinctly different track with varying genres and structures.
-*   **Conclusion:** Determinism is **model-specific**. Not all generative audio systems cache or map inputs in the same way. This highlights that the "Fixed Point" phenomenon is a specific architectural or configuration choice of certain models (like Suno), not a universal law of AI music.
+## 🎛️ Usage Instructions
 
-### 3. Reproducibility Protocol
-All findings documented in the `/tracks` directory have been verified through multiple generations. Where determinism was observed, it was confirmed by generating the track at least twice on separate occasions to rule out temporary caching artifacts.
+To reproduce the documented tracks, follow these specific input methods in Suno:
+
+### Standard Procedure (Tracks 1-12, 14+)
+1. Open Suno and select **"Create"**
+2. Switch to **"Custom Mode"**
+3. Leave the **Lyrics field EMPTY**
+4. Paste the hash or nonsense string into the **"Style of Music"** field
+5. Click **"Create"**
+
+### Exception: Track 13
+- **Input Method:** Use **"Simple Mode"** (not Custom Mode)
+- Paste the prompt directly into the main input field
+- No style tags or lyrics separation required
+
+### Why This Matters
+The distinction between "Style" and "Lyrics" fields is crucial for reproducibility. Suno's architecture processes these fields differently:
+- **Style field:** Interpreted as genre/mood descriptors → triggers deterministic latent space navigation
+- **Lyrics field:** Interpreted as semantic content → adds stochastic variation
+- **Simple Mode:** Bypasses field separation → different processing path
+
+By documenting the exact input method, we ensure that anyone can verify the deterministic behavior described in this repository.
