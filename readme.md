@@ -63,9 +63,21 @@ The inputs (hashes) are mathematical facts and are not subject to copyright. The
 2.  Enter it into a generative audio model (e.g., Suno, Udio, Google Flow).
 3.  Leave style prompts empty or minimal.
 4.  Observe the consistency of the output across multiple generations.
+## 🔬 Updated Methodology & Verification
 
-## Negative Result
-- **Model:** Google Flow Music
-- **Input:** Identical JSON nonsense (3 runs)
-- **Result:** 3 distinct tracks
-- **Conclusion:** Determinism is model-specific, not universal.
+To ensure scientific rigor, this project employs a comparative approach across different generative audio models. The core hypothesis—that specific high-entropy inputs (hashes/nonsense) trigger deterministic musical states—was tested against multiple systems.
+
+### 1. The Suno Determinism Test
+*   **Input:** Specific SHA-1 Hashes (e.g., `d746452f...`) and phonetic nonsense strings from tracks folder.
+*   **Model:** Suno mini-v6.
+*   **Result:** **High Determinism.** Repeated generation with the exact same input yielded nearly identical musical outputs in terms of genre, structure, instrumentation, and AI-generated titles.
+*   **Conclusion:** For these specific inputs, Suno functions as a **retrieval engine** within its latent space rather than a purely stochastic creator. The output is a functional mapping of the input vector.
+
+### 2. The Flow Music Control Group
+*   **Input:** Identical complex JSON data structures and nonsense prompts (3 consecutive runs).
+*   **Model:** Google Flow Music.
+*   **Result:** **High Stochasticity.** Each run produced a distinctly different track with varying genres and structures.
+*   **Conclusion:** Determinism is **model-specific**. Not all generative audio systems cache or map inputs in the same way. This highlights that the "Fixed Point" phenomenon is a specific architectural or configuration choice of certain models (like Suno), not a universal law of AI music.
+
+### 3. Reproducibility Protocol
+All findings documented in the `/tracks` directory have been verified through multiple generations. Where determinism was observed, it was confirmed by generating the track at least twice on separate occasions to rule out temporary caching artifacts.
